@@ -1,0 +1,19 @@
+alias ll='ls -l'
+alias dcrun='docker-compose run --rm'
+alias dcdel='docker ps -aq -f "status=exited" | xargs docker rm -v && docker images -q -f "dangling=true" | xargs docker rmi && docker volume ls -qf dangling=true | xargs docker volume rm'
+
+# rails climb_memo 関連
+export MYSQL_ROOT_PASSWORD='password'
+export TWITTER_CONSUMER_KEY='FvJV4gFeX44DkpfPmQYBtz0lk'
+export TWITTER_CONSUMER_SECRET='hVzgyylYjq2IGAeScQh4wB09iGWhTx1ZSCuQ9f4OSWQOWrqr1t'
+export TWITTER_ACCESS_TOKEN='121956534-BhrwFyl0tqYOzbyN0fX1tCJYcMGsHgmB9rQMy0FR'
+export TWITTER_ACCESS_SECRET='UW4I6TWGmWK6F9mk3ZJyyVETXiocghEpHiC2DGv1LtmoP'
+export GMAIL_USERNAME='tobineko.pj@gmail.com'
+export GMAIL_PASSWORD='Rhv2euk2-'
+
+# trapla開発環境用
+export DB_USERNAME='user_develop'
+export DB_PASSWORD='PassDevelop0-'
+# 本番環境用
+# export TRAPLA_DB_USERNAME='user_production'
+# export TRAPLA_DB_PASSWORD='PassProduction0-'

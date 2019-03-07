@@ -1,35 +1,13 @@
+# linux
 alias la='ls -la'
 alias ll='ls -l'
+
+# docker
 alias dcrun='docker-compose run --rm'
 alias dcdel='docker ps -aq -f "status=exited" | xargs docker rm -v && docker images -q -f "dangling=true" | xargs docker rmi && docker volume ls -qf dangling=true | xargs docker volume rm'
 
-# すたてく
-# shummake
-# export MYSQL_ROOT_PASSWORD='password'
+# vim
+alias ctags="`brew --prefix`/bin/ctags"
 
-# rails climb_memo 関連
-# rexport MYSQL_ROOT_PASSWORD='password'
-# rexport TWITTER_CONSUMER_KEY='FvJV4gFeX44DkpfPmQYBtz0lk'
-# rexport TWITTER_CONSUMER_SECRET='hVzgyylYjq2IGAeScQh4wB09iGWhTx1ZSCuQ9f4OSWQOWrqr1t'
-# rexport TWITTER_ACCESS_TOKEN='121956534-BhrwFyl0tqYOzbyN0fX1tCJYcMGsHgmB9rQMy0FR'
-# rexport TWITTER_ACCESS_SECRET='UW4I6TWGmWK6F9mk3ZJyyVETXiocghEpHiC2DGv1LtmoP'
-# rexport GMAIL_USERNAME='tobineko.pj@gmail.com'
-# rexport GMAIL_PASSWORD='Rhv2euk2-'
-
-# ———————————————trapla開発環境用———————————————
-# export DB_USERNAME='user_develop'
-# export DB_PASSWORD='PassDevelop0-'
-# 本番環境用
-## export TRAPLA_DB_USERNAME='user_production'
-## export TRAPLA_DB_PASSWORD='PassProduction0-'
-
-# ———————————————twitter bot用————————————————
-# # Meteoblue API Key
-# export METEOBLUE_API_KEY='141c95f67d14'
-# # twitter API KEY
-# export TWITTER_BOT_COMSUMER_KEY=RAK752duKrgCgalGFsmZ0boNj
-# export TWITTER_BOT_COMSUMER_SECRET=cK5KfXXYs5wHl2uCr7NVLQmsz49OE4DB0MgPL9kQZIl6qSwWtR
-# export TWITTER_BOT_ACCESS_TOKEN=1097674910539735040-JJv3vYZqAZr0vZqCukDPtZbupARSwS
-# export TWITTER_BOT_ACCESS_TOKEN_SECRET=ppPSXmBOt7CMDDdjR7ZJ5Mwbv7xutqiKNdAumH13KKbQl
-# # export TWITTER_BOT_ENVIRONMENT=production
-# export TWITTER_BOT_ENVIRONMENT=develop
+# git
+alias gitlog='git log --all --oneline --graph'

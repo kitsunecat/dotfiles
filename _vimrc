@@ -1,4 +1,5 @@
-
+" 行番号を表示
+:set number
 
 """"""""""""""""""""""""""""""
 " プラグインのセットアップ
@@ -32,7 +33,6 @@ Plug 'tpope/vim-surround'
 
 " インデントに色を付けて見やすくする
 Plug 'nathanaelkane/vim-indent-guides'
-let g:indent_guides_enable_on_vim_startup = 1
 
 " ログファイルを色づけしてくれる
 Plug 'vim-scripts/AnsiEsc.vim'

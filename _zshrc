@@ -124,11 +124,6 @@ export PATH="$HOME/dotfiles/shfiles:$PATH"
  eval "$(rbenv init -)"
 
 # ———————————————————————————————
-# flutter パス指定
-# ———————————————————————————————
- export PATH="/development/flutter/bin:$PATH"
-
-# ———————————————————————————————
 # RUST パス指定
 # ———————————————————————————————
   export PATH="$HOME/.cargo/bin:$PATH"
@@ -137,24 +132,6 @@ export PATH="$HOME/dotfiles/shfiles:$PATH"
 # FUCK パス指定
 # ———————————————————————————————
   eval $(thefuck --alias)
-
-# ———————————————————————————————
-# Android Studioパス指定
-# ———————————————————————————————
- export ANDROID_HOME=$HOME/Android/Sdk
- export ANDROID_ROOT=$HOME/Android/Sdk
- export PATH=$PATH:$ANDROID_HOME/tools
- export PATH=$PATH:$ANDROID_HOME/tools/bin
- export PATH=$PATH:$ANDROID_HOME/platform-tools
- export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/bin/java
- export JAVA_CMD=/usr/lib/jvm/java-8-openjdk-amd64/bin/java
-# export PATH=/usr/lib/jvm/java-8-openjdk-amd64/bin:$PATH
- export JAVA_OPTS='-XX:+IgnoreUnrecognizedVMOptions --add-modules java.se.ee'
- export SDKMANAGER_OPTS="--add-modules java.se.ee"
-# ———————————————————————————————
-# THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
- export SDKMAN_DIR="/home/scopfox/.sdkman"
- [[ -s "/home/scopfox/.sdkman/bin/sdkman-init.sh" ]] && source "/home/scopfox/.sdkman/bin/sdkman-init.sh"
 
 # ———————————————————————————————
 # tmux起動

@@ -67,8 +67,10 @@ zstyle ':completion:*' group-name ''
 # エイリアス
 # ———————————————————————————————
 # linux
-alias la='ls -la --color'
-alias ll='ls -l --color'
+#alias la='ls -la --color'
+#alias ll='ls -l --color'
+alias la='ls -la -G'
+alias ll='ls -l -G'
 alias back='cd $OLDPWD'
 alias home='cd $HOME'
 
@@ -131,7 +133,7 @@ export PATH="$HOME/dotfiles/shfiles:$PATH"
 # ———————————————————————————————
 # FUCK パス指定
 # ———————————————————————————————
-  eval $(thefuck --alias)
+#  eval $(thefuck --alias)
 
 # ———————————————————————————————
 # tmux起動

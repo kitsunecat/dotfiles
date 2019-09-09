@@ -90,6 +90,9 @@ alias sp='docker-compose run --rm  web bundle exec rspec'
 alias gl='git log --all --oneline --graph'
 alias gs='git add -A && git commit -am '
 
+# direnv
+alias bundle='bundle $BUNDLE'
+
 
 # ———————————————————————————————
 # redis-server起動
@@ -103,12 +106,13 @@ export PATH="$HOME/dotfiles/shfiles:$PATH"
 # ———————————————————————————————
 # MySQL
 # ———————————————————————————————
- export PATH="/usr/local/opt/mysql@5.5/bin:$PATH"
- # export LDFLAGS="-L/usr/local/opt/mysql@5.5/lib"
- # export CPPFLAGS="-I/usr/local/opt/mysql@5.5/include"
+ export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
  export LDFLAGS="-L/usr/local/opt/openssl/lib"
  export CPPFLAGS="-I/usr/local/opt/openssl/include"
- # export PKG_CONFIG_PATH="/usr/local/opt/mysql@5.5/lib/pkgconfig"
+ #export PATH="/usr/local/opt/mysql@5.5/bin:$PATH"
+ #export LDFLAGS="-L/usr/local/opt/mysql@5.5/lib"
+ #export CPPFLAGS="-I/usr/local/opt/mysql@5.5/include"
+ #export PKG_CONFIG_PATH="/usr/local/opt/mysql@5.5/lib/pkgconfig"
  # ———————————————————————————————
  # mysql起動
  # brew services restart mysql@5.5
@@ -140,6 +144,12 @@ export PATH=$HOME/.nodebrew/current/bin:$PATH
 # FUCK パス指定
 # ———————————————————————————————
 #  eval $(thefuck --alias)
+
+# ———————————————————————————————
+# direnv設定
+# ———————————————————————————————
+export EDITOR=vim
+eval "$(direnv hook zsh)"
 
 # ———————————————————————————————
 # tmux起動

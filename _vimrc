@@ -132,6 +132,9 @@ let g:auto_save = 1
 Plug 'kana/vim-smartinput'
 Plug 'cohama/vim-smartinput-endwise'
 
+" gitの差分箇所を表示
+Plug 'airblade/vim-gitgutter'
+
 call plug#end()
 
 " Required:

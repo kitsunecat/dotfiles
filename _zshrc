@@ -7,6 +7,12 @@ case $TERM in
 esac
 
 # ———————————————————————————————
+# 言語設定
+# ———————————————————————————————
+# export LANG=ja_JP.UTF-8
+# export LANG=en_US
+
+# ———————————————————————————————
 # プロンプト
 # ———————————————————————————————
 autoload -Uz compinit && compinit
@@ -26,12 +32,6 @@ precmd () {
 
 PROMPT="%B%F{green}❯❯%1(v|%1v|)%f%b %B%F{blue}%~%f%b
 %B%F{green}❯%f%b "
-
-# ———————————————————————————————
-# 言語設定
-# ———————————————————————————————
-# export LANG=ja_JP.UTF-8
-# export LANG=en_US
 
 # ———————————————————————————————
 # 補完
@@ -93,7 +93,6 @@ alias gs='git add -A && git commit -am '
 # direnv
 alias bundle='bundle $BUNDLE'
 
-
 # ———————————————————————————————
 # redis-server起動
 #brew services start redis
@@ -106,17 +105,17 @@ export PATH="$HOME/dotfiles/shfiles:$PATH"
 # ———————————————————————————————
 # MySQL
 # ———————————————————————————————
- export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
- export LDFLAGS="-L/usr/local/opt/openssl/lib"
- export CPPFLAGS="-I/usr/local/opt/openssl/include"
- #export PATH="/usr/local/opt/mysql@5.5/bin:$PATH"
- #export LDFLAGS="-L/usr/local/opt/mysql@5.5/lib"
- #export CPPFLAGS="-I/usr/local/opt/mysql@5.5/include"
- #export PKG_CONFIG_PATH="/usr/local/opt/mysql@5.5/lib/pkgconfig"
- # ———————————————————————————————
- # mysql起動
- # brew services restart mysql@5.5
- # mysql.server start
+#export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+#export LDFLAGS="-L/usr/local/opt/openssl/lib"
+#export CPPFLAGS="-I/usr/local/opt/openssl/include"
+export PATH="/usr/local/opt/mysql@5.5/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/mysql@5.5/lib"
+export CPPFLAGS="-I/usr/local/opt/mysql@5.5/include"
+
+# ———————————————————————————————
+# mysql起動
+# brew services restart mysql@5.5
+# mysql.server start
 alias mysqlbk='mysqldump -u root -p -x --all-databases >'
 alias mysqlre='mysql -u root -p < '
 # ———————————————————————————————
@@ -132,18 +131,13 @@ export PATH=$HOME/.nodebrew/current/bin:$PATH
 # ———————————————————————————————
 # rbenv パス指定
 # ———————————————————————————————
- export PATH="$HOME/.rbenv/bin:$PATH"
- eval "$(rbenv init -)"
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
 
 # ———————————————————————————————
 # RUST パス指定
 # ———————————————————————————————
-  export PATH="$HOME/.cargo/bin:$PATH"
-
-# ———————————————————————————————
-# FUCK パス指定
-# ———————————————————————————————
-#  eval $(thefuck --alias)
+export PATH="$HOME/.cargo/bin:$PATH"
 
 # ———————————————————————————————
 # direnv設定
@@ -152,6 +146,20 @@ export EDITOR=vim
 eval "$(direnv hook zsh)"
 
 # ———————————————————————————————
+# hping3設定
+# ———————————————————————————————
+export PATH="/usr/local/sbin:$PATH"
+
+# ———————————————————————————————
 # tmux起動
 # ———————————————————————————————
-if [ "$TMUX" = "" ]; then tmux -u; fi
+if [ "$TMUX" = "" ]; then tmux; fi
+:q
+
+
+
+
+
+
+
+

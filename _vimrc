@@ -1,22 +1,29 @@
-set encoding=utf-8
-set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
-set fileformats=unix,dos,mac
+"*****************************************************************************
+" 文字コード指定
+"*****************************************************************************
+:set fileencodings=utf-8,cp932,euc-jp,sjis " ファイルを読み込む時の、文字コード自動判別の順番
+:set encoding=utf-8 " vimの内部文字コード　（これを書くと、上記の優先度設定が無視されます）
+:set fileformat=unix " ファイルのエンコーディング（改行コードの種類）
 
-" 行番号を表示
-:set number
-:set autoindent  "autoindentを有効にする
-:set tabstop=2
+"*****************************************************************************
+" インデント
+"*****************************************************************************
+:set number " 行番号を表示
 :set shiftwidth=2 "tabstopと同じ値にしておけばよい
+:set tabstop=2
 :set expandtab
+:set softtabstop=2
+:set autoindent  "autoindentを有効にする
 :set cindent
 
-" Rubyの定義元追跡ようのタグ作成コマンド
-" :TagsGenerate!
-
+"*****************************************************************************
 " コード補完
+"*****************************************************************************
 let g:rsenseUseOmniFunc = 1
 
+"*****************************************************************************
 " キーマップ設定
+"*****************************************************************************
 imap <C-c> <ESC>
 imap <C-p> <Up>
 imap <C-n> <Down>
@@ -24,53 +31,38 @@ imap <C-b> <Left>
 imap <C-f> <Right>
 inoremap <C-d> <Del>
 imap <C-h> <BS>
-""""""""""""""""""""""""""""""
-" タブカスタマイズ
-""""""""""""""""""""""""""""""
-" Anywhere SID.
-function! s:SID_PREFIX()
-  return matchstr(expand('<sfile>'), '<SNR>\d\+_\zeSID_PREFIX$')
-endfunction
 
-" Set tabline.
-function! s:my_tabline()  "{{{
-  let s = ''
-  for i in range(1, tabpagenr('$'))
-    let bufnrs = tabpagebuflist(i)
-    let bufnr = bufnrs[tabpagewinnr(i) - 1]  " first window, first appears
-    let no = i  " display 0-origin tabpagenr.
-    let mod = getbufvar(bufnr, '&modified') ? '!' : ' '
-    let title = fnamemodify(bufname(bufnr), ':t')
-    let title = '[' . title . ']'
-    let s .= '%'.i.'T'
-    let s .= '%#' . (i == tabpagenr() ? 'TabLineSel' : 'TabLine') . '#'
-    let s .= no . ':' . title
-    let s .= mod
-    let s .= '%#TabLineFill# '
-  endfor
-  let s .= '%#TabLineFill#%T%=%#TabLine#'
-  return s
-endfunction "}}}
-let &tabline = '%!'. s:SID_PREFIX() . 'my_tabline()'
-set showtabline=2 " 常にタブラインを表示
+"*****************************************************************************
+"" Visual Settings
+"*****************************************************************************
+syntax enable
 
-" The prefix key.
-nnoremap    [Tag]   <Nop>
-nmap    t [Tag]
-" Tab jump
-for n in range(1, 9)
-  execute 'nnoremap <silent> [Tag]'.n  ':<C-u>tabnext'.n.'<CR>'
-endfor
-" t1 で1番左のタブ、t2 で1番左から2番目のタブにジャンプ
+set number
+set ruler              "カーソル行が何行目何列目に置かれているか表示
+set listchars=eol:¶,tab:_\
+set cursorline         "カーソル行ハイライト
+set laststatus=2       "ステータス行を常時表示
+set title              "編集中のファイル名を表示する
+set showmatch          "対応する括弧の強調表示
+set matchtime=3        "showmatchの表示時間
+set scrolloff=8        "上下の視界確保
+set sidescrolloff=16   "左右の視界確保
+set nostartofline      "移動コマンド使用時にカーソルを先頭に置かない
 
-map <silent> [Tag]c :tablast <bar> tabnew<CR>
-" tc 新しいタブを一番右に作る
-map <silent> [Tag]x :tabclose<CR>
-" tx タブを閉じる
-map <silent> [Tag]n :tabnext<CR>
-" tn 次のタブ
-map <silent> [Tag]p :tabprevious<CR>
-" tp 前のタブ
+"*****************************************************************************
+"" Basic Setup
+"*****************************************************************************"
+"" Encoding
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8
+
+"" Searching
+set incsearch          "インクリメンタルサーチを行う
+set hlsearch           "検索結果をハイライトする
+set ignorecase         "検索時に文字の大小を区別しない
+set smartcase          "検索時に大文字を含んでいたら大小を区別する
+set wrapscan           "検索をファイルの先頭へループする
 
 """"""""""""""""""""""""""""""
 " プラグインのセットアップ

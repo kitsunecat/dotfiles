@@ -1,0 +1,25 @@
+if [[ -f ./Gemfile ]]; then
+  echo '-------------------'
+  echo 'copy Gemfile'
+  echo '-------------------'
+  cp Gemfile Gemfile.bk
+  ls -l | grep Gemfile
+
+  echo '-------------------'
+  echo 'edit Gemfile'
+  echo '-------------------'
+  echo "gem 'ed25519'" >> Gemfile
+  echo "gem 'bcrypt_pbkdf'" >> Gemfile
+  diff Gemfile Gemfile.bk
+
+  tail Gemfile
+
+  bundle _1.16.5_ install
+  bundle _1.16.5_ update net-ssh
+
+  echo '-------------------'
+  echo 'remove backup file'
+  echo '-------------------'
+  mv Gemfile.bk Gemfile
+  ls -l | grep Gemfile
+fi

@@ -163,4 +163,4 @@ eval "$(direnv hook zsh)"
 # ———————————————————————————————
 # tmux起動
 # ———————————————————————————————
-if [ "$TMUX" = "" ]; then tmux -u; fi
+if [ "$TMUX" = "" ]; then tmux -u && cd $(pwd); fi

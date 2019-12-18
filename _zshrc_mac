@@ -1,0 +1,173 @@
+# ———————————————————————————————
+# ターミナルのエンコード
+# ———————————————————————————————
+case $TERM in
+    linux) LANG=C ;;
+    *) LANG=ja_JP.UTF-8 ;;
+esac
+
+# ———————————————————————————————
+# emacs 風キーバインド
+# ———————————————————————————————
+bindkey -e
+
+# ———————————————————————————————
+# プロンプト
+# ———————————————————————————————
+autoload -Uz compinit && compinit
+autoload -Uz vcs_info
+setopt prompt_subst
+
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' unstagedstr '!'
+zstyle ':vcs_info:git:*' stagedstr '+'
+zstyle ':vcs_info:*' formats ' %c%u(%s:%b)'
+zstyle ':vcs_info:*' actionformats ' %c%u(%s:%b|%a)'
+precmd () {
+    psvar=()
+    LANG=en_US.UTF-8 vcs_info
+    [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
+}
+
+PROMPT="%B%F{green}❯❯%1(v|%1v|)%f%b %B%F{blue}%~%f%b
+%B%F{green}❯%f%b "
+
+# ———————————————————————————————
+# 言語設定
+# ———————————————————————————————
+export LANG=ja_JP.UTF-8
+# export LANG=en_US
+
+# ———————————————————————————————
+# 補完
+# ———————————————————————————————
+autoload -Uz compinit
+compinit
+
+## 補完侯補をハイライトして、メニューから選択
+### select=2: 補完候補を一覧から選択 ただし、補完候補が2つ以上なければすぐに補完
+zstyle ':completion:*:default' menu select=2
+
+## 補完候補に色を付ける
+### "": 空文字列はデフォルト値を使うという意味
+zstyle ':completion:*:default' list-colors ""
+
+# 色を使用出来るようにする
+autoload -Uz colors
+colors
+
+# 補完関数の表示を強化する
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*' completer _expand _complete _match _prefix _approximate _list _history
+zstyle ':completion:*:messages' format '%F{YELLOW}%d'$DEFAULT
+zstyle ':completion:*:warnings' format '%F{RED}No matches for:''%F{YELLOW} %d'$DEFAULT
+zstyle ':completion:*:descriptions' format '%F{YELLOW}completing %B%d%b'$DEFAULT
+zstyle ':completion:*:options' description 'yes'
+zstyle ':completion:*:descriptions' format '%F{yellow}Completing %B%d%b%f'$DEFAULT
+
+# マッチ種別を別々に表示
+zstyle ':completion:*' group-name ''
+
+# ———————————————————————————————
+# エイリアス
+# ———————————————————————————————
+# linux
+#alias la='ls -la --color'
+#alias ll='ls -l --color'
+alias la='ls -la -G'
+alias ll='ls -l -G'
+alias back='cd $OLDPWD'
+alias home='cd $HOME'
+alias ipv4='ifconfig | grep inet\ '
+alias ipv6='ifconfig | grep inet6'
+
+# docker
+alias dup='docker-compose up'
+alias ddown='docker-compose down'
+alias dr='docker-compose run --rm'
+alias dd='docker ps -aq -f "status=exited" | xargs docker rm -v && docker images -q -f "dangling=true" | xargs docker rmi && docker volume ls -qf dangling=true | xargs docker volume rm'
+alias di='docker images'
+alias dp='docker ps'
+alias sp='docker-compose run --rm  web bundle exec rspec'
+
+# vim
+# alias ctags="`brew --prefix`/bin/ctags"
+
+# git
+alias gl='git log --all --oneline --graph'
+alias gs='git add -A && git commit -am '
+alias gc='git checkout '
+
+# direnv
+alias bundle='bundle $BUNDLE'
+
+# ———————————————————————————————
+# redis-server起動
+#brew services start redis
+
+# ———————————————————————————————
+# shパス指定
+# ———————————————————————————————
+export PATH="$HOME/dotfiles/shfiles:$PATH"
+
+# ———————————————————————————————
+# MySQL
+# ———————————————————————————————
+export PATH="/usr/local/opt/mysql-client/bin:$PATH"
+
+#export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+#export LDFLAGS="-L/usr/local/opt/openssl/lib"
+#export CPPFLAGS="-I/usr/local/opt/openssl/include"
+
+#export PATH="/usr/local/opt/mysql@5.5/bin:$PATH"
+#export LDFLAGS="-L/usr/local/opt/mysql@5.5/lib"
+#export CPPFLAGS="-I/usr/local/opt/mysql@5.5/include"
+
+export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/mysql@5.6/lib"
+export CPPFLAGS="-I/usr/local/opt/mysql@5.6/include"
+
+
+# ———————————————————————————————
+# mysql起動
+# brew services restart mysql@5.5
+# mysql.server start
+alias mysqlbk='mysqldump -u root -p -x --all-databases >'
+alias mysqlre='mysql -u root -p < '
+
+# ———————————————————————————————
+# node brewパス指定
+# ———————————————————————————————
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+
+# ———————————————————————————————
+# ruby パス指定
+# ———————————————————————————————
+#export PATH="~/.rbenv/shims:$PATH"
+
+# ———————————————————————————————
+# rbenv 設定
+# ———————————————————————————————
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
+# ———————————————————————————————
+# RUST パス指定
+# ———————————————————————————————
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# ———————————————————————————————
+# hping3設定
+# ———————————————————————————————
+export PATH="/usr/local/sbin:$PATH"
+
+# ———————————————————————————————
+# direnv設定
+# ———————————————————————————————
+export EDITOR=vim
+eval "$(direnv hook zsh)"
+
+# ———————————————————————————————
+# tmux起動
+# ———————————————————————————————
+if [ "$TMUX" = "" ]; then tmux -u; fi

@@ -15,11 +15,13 @@
 :set softtabstop=2
 :set autoindent  "autoindentを有効にする
 :set cindent
+:set tags+=~/.tags  "ctags
 
 "*****************************************************************************
 " NERDTree
 "*****************************************************************************
 autocmd vimenter * NERDTree
+
 
 "*****************************************************************************
 " コード補完
@@ -27,15 +29,15 @@ autocmd vimenter * NERDTree
 let g:rsenseUseOmniFunc = 1
 
 "*****************************************************************************
-" キーマップ設定
+" EMACSキーマップ設定
 "*****************************************************************************
-imap <C-c> <ESC>
-imap <C-p> <Up>
-imap <C-n> <Down>
-imap <C-b> <Left>
-imap <C-f> <Right>
-inoremap <C-d> <Del>
-imap <C-h> <BS>
+"imap <C-c> <ESC>
+"imap <C-p> <Up>
+"imap <C-n> <Down>
+"imap <C-b> <Left>
+"imap <C-f> <Right>
+"inoremap <C-d> <Del>
+"imap <C-h> <BS>
 
 "*****************************************************************************
 "" Visual Settings
@@ -73,6 +75,10 @@ set wrapscan           "検索をファイルの先頭へループする
 " プラグインのセットアップ
 """"""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
+
+
+" ファイル名をしてして検索
+Plug 'ctrlpvim/ctrlp.vim'
 
 " ファイルオープンを便利に
 Plug 'Shougo/unite.vim'

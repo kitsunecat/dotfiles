@@ -100,7 +100,7 @@ alias gc='git checkout '
 
 # rails
 alias rspec='bundle exec rspec '
-alias rspec='bundle exec rails '
+alias rails='bundle exec rails '
 
 # direnv
 alias bundle='bundle $BUNDLE'

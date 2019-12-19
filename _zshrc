@@ -106,6 +106,11 @@ alias gl='git log --all --oneline --graph'
 alias gs='git add -A && git commit -am '
 alias gc='git checkout '
 
+# rails
+alias rspec='bundle exec rspec '
+alias rails='bundle exec rails '
+
+
 # direnv
 alias bundle='bundle $BUNDLE'
 

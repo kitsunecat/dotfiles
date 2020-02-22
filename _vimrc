@@ -30,13 +30,13 @@ let g:rsenseUseOmniFunc = 1
 "*****************************************************************************
 " EMACSキーマップ設定
 "*****************************************************************************
-"imap <C-c> <ESC>
-"imap <C-p> <Up>
-"imap <C-n> <Down>
-"imap <C-b> <Left>
-"imap <C-f> <Right>
-"inoremap <C-d> <Del>
-"imap <C-h> <BS>
+imap <C-c> <ESC>
+imap <C-p> <Up>
+imap <C-n> <Down>
+imap <C-b> <Left>
+imap <C-f> <Right>
+inoremap <C-d> <Del>
+imap <C-h> <BS>
 
 "*****************************************************************************
 "" Visual Settings

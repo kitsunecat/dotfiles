@@ -80,27 +80,26 @@ alias back='cd $OLDPWD'
 alias home='cd $HOME'
 alias ipv4='ifconfig | grep inet\ '
 alias ipv6='ifconfig | grep inet6'
+alias fgrep='find app --type f | xargs grep '
 
 # docker
 alias dup='docker-compose up'
 alias ddown='docker-compose down'
 alias dr='docker-compose run --rm'
 alias dd='docker ps -aq -f "status=exited" | xargs docker rm -v && docker images -q -f "dangling=true" | xargs docker rmi && docker volume ls -qf dangling=true | xargs docker volume rm'
-alias di='docker images'
-alias dp='docker ps'
-alias sp='docker-compose run --rm  web bundle exec rspec'
 
 # vim
-# alias ctags="`brew --prefix`/bin/ctags"
+alias ctags="`brew --prefix`/bin/ctags"
 
 # git
 alias gl='git log --all --oneline --graph'
-alias gs='git add -A && git commit -am '
+alias gs='git commit -am '
 alias gc='git checkout '
 
 # rails
 alias rspec='bundle exec rspec '
 alias rails='bundle exec rails '
+alias rid_db_reset='bundle exec rails db:drop && bundle exec rails db:create && bundle exec ridgepole -c ./config/database.yml --apply -f ./db/schemafile.rb && bundle exec ridgepole -c ./config/database.yml --apply -f ./db/schemafile.rb --env test && bundle exec rails db:seed'
 
 # direnv
 alias bundle='bundle $BUNDLE'
@@ -117,7 +116,6 @@ export PATH="$HOME/dotfiles/shfiles:$PATH"
 # ———————————————————————————————
 # MySQL
 # ———————————————————————————————
-export PATH="/usr/local/opt/mysql-client/bin:$PATH"
 
 #export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
 #export LDFLAGS="-L/usr/local/opt/openssl/lib"
@@ -127,10 +125,10 @@ export PATH="/usr/local/opt/mysql-client/bin:$PATH"
 #export LDFLAGS="-L/usr/local/opt/mysql@5.5/lib"
 #export CPPFLAGS="-I/usr/local/opt/mysql@5.5/include"
 
-export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
-export LDFLAGS="-L/usr/local/opt/mysql@5.6/lib"
-export CPPFLAGS="-I/usr/local/opt/mysql@5.6/include"
-
+export PATH="/usr/local/opt/mysql-client/bin:$PATH"
+export PATH="/usr/local/opt/mysql-client/lib:$PATH"
+export LDFLAGS="-L/usr/local/opt/openssl/lib"
+export CPPFLAGS="-I/usr/local/opt/openssl/include"
 
 # ———————————————————————————————
 # mysql起動
@@ -159,6 +157,11 @@ eval "$(rbenv init -)"
 # RUST パス指定
 # ———————————————————————————————
 export PATH="$HOME/.cargo/bin:$PATH"
+
+# ———————————————————————————————
+# FLUTTER パス指定
+# ———————————————————————————————
+export PATH="$HOME/flutter/bin:$PATH"
 
 # ———————————————————————————————
 # hping3設定

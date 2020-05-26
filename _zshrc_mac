@@ -114,6 +114,11 @@ alias bundle='bundle $BUNDLE'
 export PATH="$HOME/dotfiles/shfiles:$PATH"
 
 # ———————————————————————————————
+# android-sdkパス指定
+# ———————————————————————————————
+export PATH="/Users/tetsu/Library/Android/sdk/platform-tools/:$PATH"
+
+# ———————————————————————————————
 # MySQL
 # ———————————————————————————————
 
@@ -146,6 +151,9 @@ export PATH=$HOME/.nodebrew/current/bin:$PATH
 # ruby パス指定
 # ———————————————————————————————
 #export PATH="~/.rbenv/shims:$PATH"
+#
+#別プロセスを立ち上げるときのエラー対策
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
 # ———————————————————————————————
 # rbenv 設定

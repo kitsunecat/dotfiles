@@ -111,8 +111,6 @@ alias rspec='bundle exec rspec '
 alias rails='bundle exec rails '
 
 
-# direnv
-alias bundle='bundle $BUNDLE'
 
 # ———————————————————————————————
 # redis-server起動
@@ -170,13 +168,10 @@ export PATH="/usr/local/sbin:$PATH"
 # ———————————————————————————————
 # direnv設定
 # ———————————————————————————————
-export EDITOR=vim
-eval "$(direnv hook zsh)"
-
-# ———————————————————————————————
-# direnv設定
-# ———————————————————————————————
-export PATH=~/.local/bin:$PATH
+# alias bundle='bundle $BUNDLE'
+# export EDITOR=vim
+# eval "$(direnv hook zsh)"
+# export PATH=~/.local/bin:$PATH
 
 # ———————————————————————————————
 # tmux起動

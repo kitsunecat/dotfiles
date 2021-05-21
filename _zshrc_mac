@@ -119,6 +119,11 @@ export PATH="$HOME/dotfiles/shfiles:$PATH"
 export PATH="/Users/tetsu/Library/Android/sdk/platform-tools/:$PATH"
 
 # ———————————————————————————————
+# PostgreSQL
+# ———————————————————————————————
+export PATH=/usr/local/Cellar/postgresql/12.3_1/bin:$PATH
+
+# ———————————————————————————————
 # MySQL
 # ———————————————————————————————
 

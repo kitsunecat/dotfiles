@@ -182,12 +182,6 @@ export PATH="$HOME/flutter/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 
 # ———————————————————————————————
-# direnv設定
-# ———————————————————————————————
-export EDITOR=vim
-eval "$(direnv hook zsh)"
-
-# ———————————————————————————————
 # tmux起動
 # ———————————————————————————————
 # if [ "$TMUX" = "" ]; then tmux -u; fi

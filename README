@@ -1,0 +1,6 @@
+# for MacOS
+```
+ln -s dotfiles/_vimrc .vimrc
+ln -s dotfiles/_zshrc_mac .zshrc
+ln -s dotfiles/_tmux_mac.conf .tmux.conf
+```

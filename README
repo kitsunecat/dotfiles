@@ -1,8 +1,28 @@
-# for MacOS
-```
+# シンボリックリンク
+
+## vim 設定
+
+```sh
 ln -s dotfiles/_vimrc .vimrc
+```
+
+## zsh 設定
+
+```sh
 ln -s dotfiles/_zshrc_mac .zshrc
-ln -s dotfiles/_tmux_mac.conf .tmux.conf
+```
+
+## tmux 設定
+
+```sh
+ln -s dotfiles/\_tmux_mac.conf .tmux.conf
+```
+
+## fish 設定
+
+```sh
+mv ~/.config/fish ~/.config/fish_bk
+ln -s ~/dotfiles/fish ~/.config/fish
 ```
 # for Linux
 ```

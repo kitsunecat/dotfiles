@@ -24,8 +24,10 @@ ln -s dotfiles/\_tmux_mac.conf .tmux.conf
 mv ~/.config/fish ~/.config/fish_bk
 ln -s ~/dotfiles/fish ~/.config/fish
 ```
-# for Linux
-```
+
+## for Linux
+
+```sh
 ln -s dotfiles/_vimrc .vimrc
 ln -s dotfiles/_zshrc .zshrc
 ln -s dotfiles/_tmux.conf .tmux.conf

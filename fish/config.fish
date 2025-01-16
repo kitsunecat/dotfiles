@@ -16,13 +16,18 @@ if status is-interactive
     alias di='docker images'
     alias dp='docker ps'
     alias sp='docker-compose run --rm web bundle exec rspec'
- 
+
     alias gl='git log --all --oneline --graph'
     alias gs='git add -A; and git commit -am '
     alias gc='git checkout '
- 
+    alias gr='git fetch && git pull '
+
     alias rspec='bundle exec rspec'
     alias rails='bundle exec rails'
+
+    ## Tsuk
+    alias td='docker compose -f compose.dev.yml'
+    alias td-run='docker compose -f compose.dev.yml run --rm app '
 
     # ENV
     set -x PATH $HOME/.rbenv/bin $HOME/.cargo/bin $HOME/.nodebrew/current/bin $PATH

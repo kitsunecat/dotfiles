@@ -34,7 +34,12 @@ if status is-interactive
     set -x PATH $HOME/.rbenv/bin $HOME/.cargo/bin $HOME/.nodebrew/current/bin $PATH
     set -x LDFLAGS "-L/usr/local/opt/mysql/lib"
     set -x CPPFLAGS "-I/usr/local/opt/mysql/include"
+    ## Node
+    set -Ux PATH $HOME/.nodenv/shims $PATH
+    set -Ux PATH $HOME/.nodenv/bin $PATH
+    nodenv init - | source
 
+    # NVMを使う場合にnode-versionを自動で切り替える
     function nvm_auto_use
         if test -e .node-version
             set node_version (cat .node-version | string trim)
@@ -42,11 +47,15 @@ if status is-interactive
             nvm use $node_version
         end
     end
+    ## ターミナル開いた際に自動実行
     nvm_auto_use
-
-    # ディレクトリ移動時に自動実行
+    ## ディレクトリ移動時に自動実行
     function cd
         builtin cd $argv
         nvm_auto_use
     end
 end
+
+# Added by OrbStack: command-line tools and integration
+# This won't be added again if you remove it.
+source ~/.orbstack/shell/init2.fish 2>/dev/null || :

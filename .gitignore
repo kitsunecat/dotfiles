@@ -1,5 +1,5 @@
 /vimfiles/*
 .DS_Store
 
-fish/
+fish/*
 !fish/config.fish

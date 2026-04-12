@@ -10,8 +10,7 @@
 "*****************************************************************************
 :set number " 行番号を表示
 :set shiftwidth=2 "tabstopと同じ値にしておけばよい
-:set tabstop=2
-:set expandtab
+:set tabstop=2 :set expandtab
 :set softtabstop=2
 :set autoindent  "autoindentを有効にする
 :set cindent
@@ -32,10 +31,7 @@ let g:rsenseUseOmniFunc = 1
 "*****************************************************************************
 imap <C-c> <ESC>
 imap <C-p> <Up>
-imap <C-n> <Down>
-imap <C-b> <Left>
-imap <C-f> <Right>
-inoremap <C-d> <Del>
+imap <C-n> <Down> imap <C-b> <Left> imap <C-f> <Right> inoremap <C-d> <Del>
 imap <C-h> <BS>
 
 "*****************************************************************************

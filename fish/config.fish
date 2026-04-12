@@ -26,3 +26,12 @@ set -x CPPFLAGS "-I/usr/local/opt/mysql/include"
 # Added by OrbStack: command-line tools and integration
 # This won't be added again if you remove it.
 source ~/.orbstack/shell/init2.fish 2>/dev/null || :
+
+# mise
+mise activate fish | source
+
+# ruby
+if test -d ~/.rbenv
+	set -x PATH $HOME/.rbenv/bin $PATH
+  rbenv init - | source
+end

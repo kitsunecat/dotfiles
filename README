@@ -41,4 +41,6 @@ ln -s ~/dotfiles/_tmux.conf ~/.tmux.conf
 ln -s ~/dotfiles/_xbindkeysrc ~/.xbindkeysrc
 mv ~/.config/fish ~/.config/fish_bk
 ln -s ~/dotfiles/fish ~/.config/fish
+ln -s ~/dotfiles/_wezterm.lua ~/.wezterm.lua
+ln -s ~/dotfiles/nvim ~/.config/nvim
 ```

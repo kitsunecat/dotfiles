@@ -1,3 +1,4 @@
+# よくつかうエイリアス
 alias la='ls -la --color'
 alias ll='ls -l --color'
 alias home='cd ~'
@@ -13,6 +14,7 @@ alias gl='git log --all --oneline --graph'
 alias gs='git add -A; and git commit -am '
 alias gc='git checkout '
 alias gr='git fetch && git pull '
+alias vim='nvim'
 
 ## Tsuk
 alias td='docker compose -f compose.dev.yml'

@@ -14,6 +14,7 @@ alias gl='git log --all --oneline --graph'
 alias gs='git add -A; and git commit -am '
 alias gc='git checkout '
 alias gr='git fetch && git pull '
+alias vi='nvim'
 alias vim='nvim'
 
 ## Tsuk

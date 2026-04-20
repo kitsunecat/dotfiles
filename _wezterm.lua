@@ -34,4 +34,7 @@ config.font_size = 13.0
 config.line_height = 1.0
 config.cell_width = 1.0
 
+-- 背景透過
+config.window_background_opacity = 0.85 -- 0.0(完全透明) ～ 1.0(不透明)
+
 return config

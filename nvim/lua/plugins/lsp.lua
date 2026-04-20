@@ -37,7 +37,7 @@ return {
         map("K",           vim.lsp.buf.hover,         "Hover Doc")
         map("<leader>rn",  vim.lsp.buf.rename,        "Rename")
         map("<leader>ca",  vim.lsp.buf.code_action,   "Code Action")
-        map("<leader>e",   vim.diagnostic.open_float, "Show Error")
+        map("<leader>d",   vim.diagnostic.open_float, "Show Diagnostic")
         map("[d",          vim.diagnostic.goto_prev,  "Prev Diagnostic")
         map("]d",          vim.diagnostic.goto_next,  "Next Diagnostic")
       end

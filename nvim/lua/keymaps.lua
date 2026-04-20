@@ -15,6 +15,12 @@ map("n", "<C-j>", "<C-w>j")
 map("n", "<C-k>", "<C-w>k")
 map("n", "<C-l>", "<C-w>l")
 
+-- ウィンドウリサイズ（Ctrl+矢印キー）
+map("n", "<C-Up>", "<cmd>resize +2<cr>")
+map("n", "<C-Down>", "<cmd>resize -2<cr>")
+map("n", "<C-Right>", "<cmd>vertical resize +2<cr>")
+map("n", "<C-Left>", "<cmd>vertical resize -2<cr>")
+
 -- バッファ
 map("n", "<S-l>", "<cmd>bnext<cr>")
 map("n", "<S-h>", "<cmd>bprevious<cr>")

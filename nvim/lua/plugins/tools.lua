@@ -52,6 +52,36 @@ return {
       end,
     },
   },
+  -- PR閲覧関連
+  {
+    "sindrets/diffview.nvim",
+    dependencies = "nvim-lua/plenary.nvim",
+    keys = {
+      { "<leader>gho", "<cmd>DiffviewOpen origin/main...HEAD<cr>", desc = "PR diff (vs main)" },
+      { "<leader>ghd", "<cmd>DiffviewOpen<cr>",                    desc = "Diff working tree" },
+      { "<leader>ghx", "<cmd>DiffviewClose<cr>",                   desc = "Close diffview" },
+      { "<leader>ghh", "<cmd>DiffviewFileHistory %<cr>",           desc = "File history (current)" },
+      { "<leader>ghH", "<cmd>DiffviewFileHistory<cr>",             desc = "File history (repo)" },
+      { "<leader>ght", "<cmd>DiffviewToggleFiles<cr>",             desc = "Toggle files panel" },
+    },
+  },
+  {
+    "pwntester/octo.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+      "nvim-tree/nvim-web-devicons",
+    },
+    cmd = "Octo",
+    keys = {
+      { "<leader>ghp", "<cmd>Octo pr list<cr>",       desc = "PR list" },
+      { "<leader>ghP", "<cmd>Octo pr checkout<cr>",   desc = "PR checkout" },
+      { "<leader>ghi", "<cmd>Octo issue list<cr>",    desc = "Issue list" },
+      { "<leader>ghr", "<cmd>Octo review start<cr>",  desc = "Review start" },
+      { "<leader>ghs", "<cmd>Octo review submit<cr>", desc = "Review submit" },
+    },
+    config = true,
+  },
 
   -- エラー一覧
   {

@@ -15,6 +15,12 @@ map("n", "<C-j>", "<C-w>j")
 map("n", "<C-k>", "<C-w>k")
 map("n", "<C-l>", "<C-w>l")
 
+-- ターミナルモードからウィンドウ移動（ESCを使わずClaudeの会話を中断しない）
+map("t", "<C-h>", [[<C-\><C-n><C-w>h]])
+map("t", "<C-j>", [[<C-\><C-n><C-w>j]])
+map("t", "<C-k>", [[<C-\><C-n><C-w>k]])
+map("t", "<C-l>", [[<C-\><C-n><C-w>l]])
+
 -- ウィンドウリサイズ（Ctrl+矢印キー）
 map("n", "<C-Up>", "<cmd>resize +2<cr>")
 map("n", "<C-Down>", "<cmd>resize -2<cr>")

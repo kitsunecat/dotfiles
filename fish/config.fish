@@ -23,8 +23,15 @@ alias td-run='docker compose -f compose.dev.yml run --rm app '
 
 # ENV
 set -x PATH $HOME/.rbenv/bin $HOME/.cargo/bin $HOME/.nodebrew/current/bin $PATH
-set -x LDFLAGS "-L/usr/local/opt/mysql/lib"
-set -x CPPFLAGS "-I/usr/local/opt/mysql/include"
+
+# mysql-client
+set -x PATH /usr/local/opt/mysql-client/bin $PATH
+set -x PATH /usr/local/opt/mysql-client/lib $PATH
+set -x PATH /opt/homebrew/opt/mysql-client/bin $PATH
+
+# openssl
+set -x LDFLAGS "-L/opt/homebrew/opt/openssl@3/lib"
+set -x CPPFLAGS "-I/opt/homebrew/opt/openssl@3/include"
 
 # Added by OrbStack: command-line tools and integration
 # This won't be added again if you remove it.

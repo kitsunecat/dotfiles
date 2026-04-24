@@ -26,6 +26,7 @@ opt.wrap = false
 opt.swapfile = false
 opt.backup = false
 opt.undofile = true
+opt.autoread = true -- 外部でファイルが変更されたら自動で読み直す
 
 -- クリップボード（OSと共有）
 opt.clipboard = "unnamedplus"

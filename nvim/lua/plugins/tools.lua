@@ -38,13 +38,14 @@ return {
   {
     "lewis6991/gitsigns.nvim",
     opts = {
+      current_line_blame = true,
       on_attach = function(bufnr)
-        local gs = package.loaded.gitsigns
+        local gs = require("gitsigns")
         local map = function(mode, l, r, desc)
           vim.keymap.set(mode, l, r, { buffer = bufnr, desc = desc })
         end
-        map("n", "]c", gs.next_hunk, "Next Hunk")
-        map("n", "[c", gs.prev_hunk, "Prev Hunk")
+        map("n", "]c", function() gs.nav_hunk("next") end, "Next Hunk")
+        map("n", "[c", function() gs.nav_hunk("prev") end, "Prev Hunk")
         map("n", "<leader>hs", gs.stage_hunk, "Stage Hunk")
         map("n", "<leader>hr", gs.reset_hunk, "Reset Hunk")
         map("n", "<leader>hp", gs.preview_hunk, "Preview Hunk")
@@ -54,31 +55,22 @@ return {
   },
   {
     "tpope/vim-fugitive",
-  },
-  {
-    "lewis6991/gitsigns.nvim",
-    opts = {
-      current_line_blame = false, -- 好みで true
-      on_attach = function(bufnr)
-        local gs = require("gitsigns")
-        local map = function(mode, l, r) vim.keymap.set(mode, l, r, { buffer = bufnr }) end
-        map("n", "]c", function() gs.nav_hunk("next") end)
-        map("n", "[c", function() gs.nav_hunk("prev") end)
-        map("n", "<leader>hp", gs.preview_hunk)
-        map("n", "<leader>hr", gs.reset_hunk)
-        map("n", "<leader>hs", gs.stage_hunk)
-      end,
+    cmd = { "Git", "Gdiffsplit" },
+    keys = {
+      { "<leader>gd", "<cmd>Gdiffsplit<cr>",      desc = "Diff vs HEAD" },
+      { "<leader>gD", "<cmd>Gdiffsplit main<cr>", desc = "Diff vs main" },
+      { "<leader>gs", "<cmd>Git<cr>",             desc = "Git status" },
+      { "<leader>gb", "<cmd>Git blame<cr>",       desc = "Git blame" },
     },
-  },
-  {
-    "sindrets/diffview.nvim",
-    cmd = { "DiffviewOpen", "DiffviewFileHistory" },
   },
   -- PR閲覧関連
   {
     "sindrets/diffview.nvim",
     dependencies = "nvim-lua/plenary.nvim",
+    cmd = { "DiffviewOpen", "DiffviewFileHistory" },
     keys = {
+      { "<leader>gv",  "<cmd>DiffviewOpen<cr>",                    desc = "Diffview open" },
+      { "<leader>gV",  "<cmd>DiffviewClose<cr>",                   desc = "Diffview close" },
       { "<leader>gho", "<cmd>DiffviewOpen origin/main...HEAD<cr>", desc = "PR diff (vs main)" },
       { "<leader>ghd", "<cmd>DiffviewOpen<cr>",                    desc = "Diff working tree" },
       { "<leader>ghx", "<cmd>DiffviewClose<cr>",                   desc = "Close diffview" },

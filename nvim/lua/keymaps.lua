@@ -1,13 +1,13 @@
 local map = vim.keymap.set
 
--- leaderキーをスペースに
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
 -- 基本操作
 map("n", "<leader>w", "<cmd>w<cr>")
 map("n", "<leader>q", "<cmd>q<cr>")
 map("n", "<Esc>", "<cmd>nohlsearch<cr>")
+
+-- ターミナル
+map("n", "<C-`>", ":split | terminal<CR>", { noremap = true, silent = true })
+map("t", "<Esc>", [[<C-\><C-n>]], { noremap = true, silent = true })
 
 -- ウィンドウ移動（Ctrl+hjkl）
 map("n", "<C-h>", "<C-w>h")

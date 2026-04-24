@@ -32,6 +32,12 @@ return {
       update_focused_file = {
         enable = true, -- 開いているファイルをツリーでハイライト
       },
+      auto_reload_on_write = true,
+      reload_on_bufenter = true,
+      filesystem_watchers = {
+        enable = true, -- 外部からのファイル変更を検知して自動更新
+        debounce_delay = 50,
+      },
     },
   },
   -- Git
@@ -69,14 +75,14 @@ return {
     dependencies = "nvim-lua/plenary.nvim",
     cmd = { "DiffviewOpen", "DiffviewFileHistory" },
     keys = {
-      { "<leader>gv",  "<cmd>DiffviewOpen<cr>",                    desc = "Diffview open" },
-      { "<leader>gV",  "<cmd>DiffviewClose<cr>",                   desc = "Diffview close" },
-      { "<leader>gho", "<cmd>DiffviewOpen origin/main...HEAD<cr>", desc = "PR diff (vs main)" },
-      { "<leader>ghd", "<cmd>DiffviewOpen<cr>",                    desc = "Diff working tree" },
-      { "<leader>ghx", "<cmd>DiffviewClose<cr>",                   desc = "Close diffview" },
-      { "<leader>ghh", "<cmd>DiffviewFileHistory %<cr>",           desc = "File history (current)" },
-      { "<leader>ghH", "<cmd>DiffviewFileHistory<cr>",             desc = "File history (repo)" },
-      { "<leader>ght", "<cmd>DiffviewToggleFiles<cr>",             desc = "Toggle files panel" },
+      { "<leader>gv",  "<cmd>DiffviewOpen<cr>",                       desc = "Diffview open" },
+      { "<leader>gV",  "<cmd>DiffviewClose<cr>",                      desc = "Diffview close" },
+      { "<leader>gho", "<cmd>DiffviewOpen origin/develop...HEAD<cr>", desc = "PR diff (vs develop)" },
+      { "<leader>ghd", "<cmd>DiffviewOpen<cr>",                       desc = "Diff working tree" },
+      { "<leader>ghx", "<cmd>DiffviewClose<cr>",                      desc = "Close diffview" },
+      { "<leader>ghh", "<cmd>DiffviewFileHistory %<cr>",              desc = "File history (current)" },
+      { "<leader>ghH", "<cmd>DiffviewFileHistory<cr>",                desc = "File history (repo)" },
+      { "<leader>ght", "<cmd>DiffviewToggleFiles<cr>",                desc = "Toggle files panel" },
     },
   },
   {
@@ -97,18 +103,14 @@ return {
     config = true,
   },
 
-  -- PDF閲覧
+  -- Markdownプレビュー (glow)
   {
-    "iamcco/markdown-preview.nvim",
-    cmd = { "MarkdownPreview", "MarkdownPreviewStop", "MarkdownPreviewToggle" },
+    "ellisonleao/glow.nvim",
+    cmd = "Glow",
     ft = { "markdown" },
-    build = "cd app && yarn install",
-    init = function()
-      vim.g.mkdp_filetypes = { "markdown" }
-    end,
+    opts = {},
     keys = {
-      { "<leader>mp", "<cmd>MarkdownPreviewToggle<cr>", desc = "Markdown preview toggle", ft = "markdown" },
-      { "<leader>ms", "<cmd>MarkdownPreviewStop<cr>",   desc = "Markdown preview stop",   ft = "markdown" },
+      { "<leader>mp", "<cmd>Glow<cr>", desc = "Markdown preview (glow)", ft = "markdown" },
     },
   },
 

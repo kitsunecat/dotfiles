@@ -52,6 +52,28 @@ return {
       end,
     },
   },
+  {
+    "tpope/vim-fugitive",
+  },
+  {
+    "lewis6991/gitsigns.nvim",
+    opts = {
+      current_line_blame = false, -- 好みで true
+      on_attach = function(bufnr)
+        local gs = require("gitsigns")
+        local map = function(mode, l, r) vim.keymap.set(mode, l, r, { buffer = bufnr }) end
+        map("n", "]c", function() gs.nav_hunk("next") end)
+        map("n", "[c", function() gs.nav_hunk("prev") end)
+        map("n", "<leader>hp", gs.preview_hunk)
+        map("n", "<leader>hr", gs.reset_hunk)
+        map("n", "<leader>hs", gs.stage_hunk)
+      end,
+    },
+  },
+  {
+    "sindrets/diffview.nvim",
+    cmd = { "DiffviewOpen", "DiffviewFileHistory" },
+  },
   -- PR閲覧関連
   {
     "sindrets/diffview.nvim",
@@ -88,7 +110,14 @@ return {
     "iamcco/markdown-preview.nvim",
     cmd = { "MarkdownPreview", "MarkdownPreviewStop", "MarkdownPreviewToggle" },
     ft = { "markdown" },
-    build = function() vim.fn["mkdp#util#install"]() end,
+    build = "cd app && yarn install",
+    init = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
+    keys = {
+      { "<leader>mp", "<cmd>MarkdownPreviewToggle<cr>", desc = "Markdown preview toggle", ft = "markdown" },
+      { "<leader>ms", "<cmd>MarkdownPreviewStop<cr>",   desc = "Markdown preview stop",   ft = "markdown" },
+    },
   },
 
   -- エラー一覧

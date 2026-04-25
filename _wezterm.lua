@@ -8,8 +8,13 @@ config.debug_key_events = true
 config.keys = {
   { key = '[',          mods = 'CTRL',       action = act.ActivateCopyMode },
   -- ペイン分割
-  { key = 'd',          mods = 'CTRL|SHIFT', action = act.SplitVertical({ domain = 'CurrentPaneDomain' }) },
-  { key = 'e',          mods = 'CTRL|SHIFT', action = act.SplitHorizontal({ domain = 'CurrentPaneDomain' }) },
+  { key = '|',          mods = 'CTRL|SHIFT', action = act.SplitHorizontal({ domain = 'CurrentPaneDomain' }) },
+  { key = '_',          mods = 'CTRL|SHIFT', action = act.SplitVertical({ domain = 'CurrentPaneDomain' }) },
+  -- SHIFT+- = _ なので _ でも登録（CTRL+SHIFT+- の実際のキーコード）
+  { key = '-',          mods = 'CTRL|SHIFT', action = act.SplitVertical({ domain = 'CurrentPaneDomain' }) },
+  -- デフォルトの CTRL+- / CTRL+_ (文字縮小) を無効化
+  { key = '-',          mods = 'CTRL',       action = act.DisableDefaultAssignment },
+  { key = '_',          mods = 'CTRL',       action = act.DisableDefaultAssignment },
   -- ペイン移動
   { key = 'h',          mods = 'CTRL|SHIFT', action = act.ActivatePaneDirection('Left') },
   { key = 'l',          mods = 'CTRL|SHIFT', action = act.ActivatePaneDirection('Right') },
@@ -23,10 +28,7 @@ config.keys = {
 
 -- # フォント設定
 -- メインフォント。NF 版を使う場合はファミリー名に "Console NF" を指定
-config.font = wezterm.font_with_fallback({
-  'HackGen Console NF', -- 半角1:全角2、Nerd Fonts アイコン付き
-  'HackGen Console',    -- フォールバック（NF なし版を入れた人向け）
-})
+config.font = wezterm.font_with_fallback({ 'HackGen Console' })
 
 config.font_size = 13.0
 

@@ -9,6 +9,10 @@ map("n", "<Esc>", "<cmd>nohlsearch<cr>")
 map("n", "<C-`>", ":split | terminal<CR>", { noremap = true, silent = true })
 map("t", "<Esc>", [[<C-\><C-n>]], { noremap = true, silent = true })
 
+-- ウィンドウ分割
+map("n", "<C-w>|", "<cmd>vsplit<cr>")
+map("n", "<C-w>-", "<cmd>split<cr>")
+
 -- ウィンドウ移動（Ctrl+hjkl）
 map("n", "<C-h>", "<C-w>h")
 map("n", "<C-j>", "<C-w>j")

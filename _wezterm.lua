@@ -29,12 +29,17 @@ config.keys = {
 -- # フォント設定
 -- メインフォント。NF 版を使う場合はファミリー名に "Console NF" を指定
 config.font = wezterm.font_with_fallback({ 'HackGen Console' })
-
-config.font_size = 13.0
+config.font_size = 14.0
 
 -- 行間が詰まって見えるときの微調整（お好みで）
 config.line_height = 1.0
 config.cell_width = 1.0
+
+-- # ウィンドウ設定
+
+-- 起動時のウィンドウサイズ（文字数で指定：列数 × 行数）
+config.initial_cols = 120
+config.initial_rows = 36
 
 -- 背景透過
 config.window_background_opacity = 0.85 -- 0.0(完全透明) ～ 1.0(不透明)

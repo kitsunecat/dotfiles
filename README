@@ -9,7 +9,7 @@ ln -s ~/dotfiles/_vimrc ~/.vimrc
 ## zsh 設定
 
 ```sh
-ln -s ~/dotfiles/_zshrc_mac ~/.zshrc
+ln -s ~/dotfiles/_zshrc ~/.zshrc
 ```
 
 ## tmux 設定

@@ -1,4 +1,12 @@
 # ———————————————————————————————
+# OS判定
+# ———————————————————————————————
+case "$(uname)" in
+    Darwin) OS_TYPE=mac ;;
+    Linux)  OS_TYPE=linux ;;
+esac
+
+# ———————————————————————————————
 # ターミナルのエンコード
 # ———————————————————————————————
 case $TERM in
@@ -23,20 +31,20 @@ zstyle ':vcs_info:git:*' unstagedstr '!'
 zstyle ':vcs_info:git:*' stagedstr '+'
 zstyle ':vcs_info:*' formats ' %c%u(%s:%b)'
 zstyle ':vcs_info:*' actionformats ' %c%u(%s:%b|%a)'
+
 precmd () {
     psvar=()
     LANG=en_US.UTF-8 vcs_info
     [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
 }
 
-PROMPT="%B%F{green}❯❯%1(v|%1v|)%f%b %B%F{blue}%~%f%b %* %D{%Y/%m/%d}
-%B%F{green}❯%f%b "
+PROMPT="%F{green}>>%1(v|%1v|)%f %F{blue}%~%f %* %D{%Y/%m/%d}
+%F{green}>%f "
 
 # ———————————————————————————————
 # 言語設定
 # ———————————————————————————————
 export LANG=ja_JP.UTF-8
-# export LANG=en_US
 
 # ———————————————————————————————
 # 補完
@@ -71,50 +79,44 @@ zstyle ':completion:*' group-name ''
 # ———————————————————————————————
 # エイリアス
 # ———————————————————————————————
-# AWS
-#   ECSにプッシュする
-#   環境変数が必要
-#     export DOCKER_IMAGE_NAME='docker iamges'で表示されるdockerいメージ名
-#     export ECS_IMAGE_NAME=ECSのレポジトリ名
-#     export ECS_PUSH_TARGET=ECSのエンドポイント
-alias ecspush='$(aws2 ecr get-login --no-include-email --region ap-northeast-1) && docker tag $DOCKER_IMAGE_NAME\:latest $ECS_PUSH_TARGET/$ECS_IMAGE_NAME\:latest && docker push $ECS_PUSH_TARGET/$ECS_IMAGE_NAME\:latest'
+# ls (OS別)
+if [[ "$OS_TYPE" == "mac" ]]; then
+    alias la='ls -la -G'
+    alias ll='ls -l -G'
+else
+    alias la='ls -la --color'
+    alias ll='ls -l --color'
+fi
 
-# linux
-alias la='ls -la --color'
-alias ll='ls -l --color'
-#alias la='ls -la -G'
-#alias ll='ls -l -G'
 alias back='cd $OLDPWD'
 alias home='cd $HOME'
-alias ipv4='ifconfig | grep inet\ '
-alias ipv6='ifconfig | grep inet6'
+alias fgrep='find app --type f | xargs grep '
 
 # docker
 alias dup='docker-compose up'
 alias ddown='docker-compose down'
 alias dr='docker-compose run --rm'
 alias dd='docker ps -aq -f "status=exited" | xargs docker rm -v && docker images -q -f "dangling=true" | xargs docker rmi && docker volume ls -qf dangling=true | xargs docker volume rm'
-alias di='docker images'
-alias dp='docker ps'
-alias sp='docker-compose run --rm  web bundle exec rspec'
 
 # vim
-# alias ctags="`brew --prefix`/bin/ctags"
+if [[ "$OS_TYPE" == "mac" ]] && command -v brew >/dev/null 2>&1; then
+    alias ctags="`brew --prefix`/bin/ctags"
+fi
 
 # git
 alias gl='git log --all --oneline --graph'
-alias gs='git add -A && git commit -am '
+alias gs='git commit -am '
 alias gc='git checkout '
+alias gr='git fetch && git pull '
 
 # rails
 alias rspec='bundle exec rspec '
 alias rails='bundle exec rails '
+alias rid_db_reset='bundle exec rails db:drop && bundle exec rails db:create && bundle exec ridgepole -c ./config/database.yml --apply -f ./db/schemafile.rb && bundle exec ridgepole -c ./config/database.yml --apply -f ./db/schemafile.rb --env test && bundle exec rails db:seed'
 
-
-
-# ———————————————————————————————
-# redis-server起動
-#brew services start redis
+# mysql
+alias mysqlbk='mysqldump -u root -p -x --all-databases >'
+alias mysqlre='mysql -u root -p < '
 
 # ———————————————————————————————
 # shパス指定
@@ -122,22 +124,67 @@ alias rails='bundle exec rails '
 export PATH="$HOME/dotfiles/shfiles:$PATH"
 
 # ———————————————————————————————
-# MySQL
+# Python (pyenv)
 # ———————————————————————————————
-#export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
-#export LDFLAGS="-L/usr/local/opt/openssl/lib"
-#export CPPFLAGS="-I/usr/local/opt/openssl/include"
-
-export PATH="/usr/local/opt/mysql/bin:$PATH"
-export LDFLAGS="-L/usr/local/opt/mysql/lib"
-export CPPFLAGS="-I/usr/local/opt/mysql/include"
+if command -v pyenv >/dev/null 2>&1; then
+    if [[ "$OS_TYPE" == "mac" ]]; then
+        export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+    fi
+    eval "$(pyenv init --path)"
+    eval "$(pyenv init -)"
+fi
 
 # ———————————————————————————————
-# mysql起動
-# brew services restart mysql@5.5
-# mysql.server start
-alias mysqlbk='mysqldump -u root -p -x --all-databases >'
-alias mysqlre='mysql -u root -p < '
+# RUST パス指定
+# ———————————————————————————————
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# ———————————————————————————————
+# macOS: Homebrew (openssl@3 / mysql-client / SDL2 など)
+# ———————————————————————————————
+if [[ "$OS_TYPE" == "mac" ]]; then
+    export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
+    export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib"
+    export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include"
+    export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig"
+
+    export PATH="/usr/local/opt/mysql-client/bin:$PATH"
+    export PATH="/usr/local/opt/mysql-client/lib:$PATH"
+    export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+
+    if command -v brew >/dev/null 2>&1; then
+        export LIBRARY_PATH="$LIBRARY_PATH:$(brew --prefix)/lib"
+    fi
+
+    # rails: 別プロセスを立ち上げるときのエラー対策
+    export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+
+    # rubocop daemon
+    export PATH="/usr/local/bin/rubocop-daemon-wrapper:$PATH"
+else
+    # Linux: 通常の MySQL
+    export PATH="/usr/local/opt/mysql/bin:$PATH"
+    export LDFLAGS="-L/usr/local/opt/mysql/lib"
+    export CPPFLAGS="-I/usr/local/opt/mysql/include"
+fi
+
+# ———————————————————————————————
+# LoopBackパス指定
+# ———————————————————————————————
+export PATH=/usr/local/lib/node_modules/node/bin/lb:$PATH
+
+# ———————————————————————————————
+# nvm
+# ———————————————————————————————
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+# ———————————————————————————————
+# npmパス指定
+# ———————————————————————————————
+export PATH=~/.npm-global/bin:$PATH
 
 # ———————————————————————————————
 # node brewパス指定
@@ -145,20 +192,23 @@ alias mysqlre='mysql -u root -p < '
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 
 # ———————————————————————————————
-# ruby パス指定
-# ———————————————————————————————
-#export PATH="~/.rbenv/shims:$PATH"
-
-# ———————————————————————————————
 # rbenv パス指定
 # ———————————————————————————————
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+if [ -d "$HOME/.rbenv" ] || command -v rbenv >/dev/null 2>&1; then
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    if [[ "$OS_TYPE" == "mac" ]]; then
+        eval "$(rbenv init - zsh)"
+    else
+        eval "$(rbenv init -)"
+    fi
+fi
 
 # ———————————————————————————————
-# RUST パス指定
+# FLUTTER パス指定
 # ———————————————————————————————
-export PATH="$HOME/.cargo/bin:$PATH"
+if [[ "$OS_TYPE" == "mac" ]]; then
+    export PATH="$HOME/flutter/bin:$PATH"
+fi
 
 # ———————————————————————————————
 # hping3設定
@@ -166,14 +216,13 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 
 # ———————————————————————————————
-# direnv設定
+# Amplify CLI
 # ———————————————————————————————
-# alias bundle='bundle $BUNDLE'
-# export EDITOR=vim
-# eval "$(direnv hook zsh)"
-# export PATH=~/.local/bin:$PATH
+if [[ "$OS_TYPE" == "mac" ]]; then
+    export PATH="$HOME/.amplify/bin:$PATH"
+fi
 
 # ———————————————————————————————
-# tmux起動
+# PostgreSQL
 # ———————————————————————————————
-if [ "$TMUX" = "" ]; then tmux -u && cd $(pwd); fi
+export PATH=/usr/local/Cellar/postgresql/12.3_1/bin:$PATH

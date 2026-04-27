@@ -39,3 +39,43 @@ map("n", "<leader>bd", "<cmd>bdelete<cr>")
 -- インデントをビジュアルモードで連続して使う
 map("v", "<", "<gv")
 map("v", ">", ">gv")
+
+-- ファイル操作
+map("n", "<leader>fy", function()
+  local path = vim.fn.expand("%:.")
+  vim.fn.setreg("+", path)
+  vim.notify("Copied: " .. path)
+end, { desc = "Copy relative path" })
+
+map("n", "<leader>fu", function()
+  local file_dir = vim.fn.expand("%:p:h")
+  local function git(cmd)
+    return vim.fn.system("git -C " .. vim.fn.shellescape(file_dir) .. " " .. cmd):gsub("\n", "")
+  end
+  local remote = git("remote get-url origin")
+  if vim.v.shell_error ~= 0 then
+    vim.notify("Not a git repository", vim.log.levels.ERROR)
+    return
+  end
+  remote = remote:gsub("git@github%.com:", "https://github.com/")
+  remote = remote:gsub("%.git$", "")
+  local branch = git("branch --show-current")
+  local git_root = git("rev-parse --show-toplevel")
+  local abs_path = vim.fn.expand("%:p")
+  local rel_path = abs_path:sub(#git_root + 2)
+  local url = remote .. "/blob/" .. branch .. "/" .. rel_path
+  vim.fn.setreg("+", url)
+  vim.notify("Copied: " .. url)
+end, { desc = "Copy GitHub URL" })
+
+map("n", "<leader>fx", function()
+  local path = vim.fn.expand("%:p")
+  local name = vim.fn.expand("%:t")
+  vim.ui.input({ prompt = "Delete " .. name .. "? (y/N): " }, function(input)
+    if input == "y" or input == "Y" then
+      vim.fn.delete(path)
+      vim.cmd("bdelete!")
+      vim.notify("Deleted: " .. name)
+    end
+  end)
+end, { desc = "Delete file" })

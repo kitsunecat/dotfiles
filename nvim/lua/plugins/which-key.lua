@@ -5,7 +5,7 @@ return {
     spec = {
       { "<leader>g",  group = "git" },
       { "<leader>gh", group = "github" },
-      { "<leader>f",  group = "find" },
+      { "<leader>f",  group = "file/find" },
     },
   },
 }

@@ -14,7 +14,7 @@ function fish_prompt
     set -g __fish_git_prompt_color_cleanstate brgreen
 
     set_color brblack
-    echo -n (whoami)'@'(prompt_hostname)' '(prompt_pwd)
+    echo -n (prompt_pwd)
     set_color normal
     fish_vcs_prompt
     echo

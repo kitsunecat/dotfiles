@@ -18,8 +18,7 @@ alias vi='nvim'
 alias vim='nvim'
 
 ## Tsuk
-alias td='docker compose -f compose.dev.yml'
-alias td-run='docker compose -f compose.dev.yml run --rm app '
+alias td-run='docker compose run --rm app '
 
 # ENV
 set -x PATH $HOME/.rbenv/bin $HOME/.cargo/bin $HOME/.nodebrew/current/bin $PATH

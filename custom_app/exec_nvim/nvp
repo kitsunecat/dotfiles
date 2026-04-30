@@ -1,0 +1,7 @@
+#!/usr/bin/env fish
+set dir (path resolve (if set -q argv[1]; echo $argv[1]; else; pwd; end))
+
+wezterm start --cwd $dir -- fish -c "
+  wezterm cli split-pane --bottom --percent 33 --cwd '$dir'
+  nvim .
+"

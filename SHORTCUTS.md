@@ -12,8 +12,9 @@
 
 | キー | 動作 |
 | --- | --- |
-| `Ctrl+Shift+d` | ペインを上下に分割（垂直分割） |
-| `Ctrl+Shift+e` | ペインを左右に分割（水平分割） |
+| `Ctrl+Shift+|` | ペインを左右に分割（水平分割） |
+| `Ctrl+Shift+_` | ペインを上下に分割（垂直分割） |
+| `Ctrl+Shift+-` | ペインを上下に分割（垂直分割、`_` と同じ） |
 
 ### ペイン移動
 
@@ -47,7 +48,14 @@
 | Normal | `<leader>q` | 終了 (`:q`) |
 | Normal | `<Esc>` | 検索ハイライトをクリア |
 
-### ウィンドウ操作
+### ウィンドウ分割
+
+| モード | キー | 動作 |
+| --- | --- | --- |
+| Normal | `Ctrl+w |` | 垂直分割 (vsplit) |
+| Normal | `Ctrl+w -` | 水平分割 (split) |
+
+### ウィンドウ移動
 
 | モード | キー | 動作 |
 | --- | --- | --- |
@@ -55,6 +63,15 @@
 | Normal | `Ctrl+j` | 下のウィンドウへ移動 |
 | Normal | `Ctrl+k` | 上のウィンドウへ移動 |
 | Normal | `Ctrl+l` | 右のウィンドウへ移動 |
+| Terminal | `Ctrl+h` | 左のウィンドウへ移動（ESC不要） |
+| Terminal | `Ctrl+j` | 下のウィンドウへ移動（ESC不要） |
+| Terminal | `Ctrl+k` | 上のウィンドウへ移動（ESC不要） |
+| Terminal | `Ctrl+l` | 右のウィンドウへ移動（ESC不要） |
+
+### ウィンドウリサイズ
+
+| モード | キー | 動作 |
+| --- | --- | --- |
 | Normal | `Ctrl+↑` | ウィンドウ高さを +2 |
 | Normal | `Ctrl+↓` | ウィンドウ高さを -2 |
 | Normal | `Ctrl+→` | ウィンドウ幅を +2 |
@@ -75,12 +92,20 @@
 | Visual | `<` | インデントを戻す（連続可） |
 | Visual | `>` | インデントを進める（連続可） |
 
-### ターミナル (`init.lua`)
+### ターミナル (`keymaps.lua`)
 
 | モード | キー | 動作 |
 | --- | --- | --- |
 | Normal | `Ctrl+` ` | 水平分割でターミナルを開く |
 | Terminal | `Esc` | ターミナルモードからノーマルモードへ |
+
+### ファイル操作 (`keymaps.lua`)
+
+| モード | キー | 動作 |
+| --- | --- | --- |
+| Normal | `<leader>fy` | 相対パスをクリップボードにコピー |
+| Normal | `<leader>fu` | GitHub URL をクリップボードにコピー |
+| Normal | `<leader>fx` | 現在のファイルを削除 |
 
 ### LSP (`plugins/lsp.lua`)
 
@@ -139,6 +164,48 @@
 | `<leader>hr` | hunk をリセット |
 | `<leader>hp` | hunk をプレビュー |
 | `<leader>hb` | 行の blame 表示 |
+
+### Git vim-fugitive
+
+| キー | 動作 |
+| --- | --- |
+| `<leader>gs` | Git status |
+| `<leader>gb` | Git blame |
+| `<leader>gd` | Diff vs HEAD |
+| `<leader>gD` | Diff vs main |
+
+### Git diffview.nvim
+
+| キー | 動作 |
+| --- | --- |
+| `<leader>gv` | Diffview を開く |
+| `<leader>gV` | Diffview を閉じる |
+| `<leader>ghod` | PR diff（vs develop） |
+| `<leader>ghom` | PR diff（vs main） |
+| `<leader>ghd` | ワーキングツリーの diff |
+| `<leader>ghx` | Diffview を閉じる |
+| `<leader>ghh` | 現在ファイルの履歴 |
+| `<leader>ghH` | リポジトリ全体の履歴 |
+| `<leader>ght` | ファイルパネルをトグル |
+
+### GitHub Octo.nvim（PR・Issue）
+
+| キー | 動作 |
+| --- | --- |
+| `<leader>ghp` | PR 一覧 |
+| `<leader>ghP` | PR チェックアウト |
+| `<leader>ghi` | Issue 一覧 |
+| `<leader>ghr` | レビュー開始 |
+| `<leader>ghR` | レビュー再開 |
+| `<leader>ghD` | レビュー破棄 |
+| `<leader>ghs` | レビュー提出 |
+| `<leader>ghf` | PR 変更ファイル一覧 |
+
+### Markdown（glow）
+
+| キー | 動作 |
+| --- | --- |
+| `<leader>mp` | Markdown プレビュー（glow） |
 
 ### Trouble
 

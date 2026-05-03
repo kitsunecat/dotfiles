@@ -5,6 +5,12 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
+      require("tokyonight").setup({
+        on_highlights = function(hl, _)
+          hl.Whitespace = { fg = "#3b4261" }
+          hl.NonText = { fg = "#3b4261" }
+        end,
+      })
       vim.cmd.colorscheme("tokyonight-night")
     end,
   },

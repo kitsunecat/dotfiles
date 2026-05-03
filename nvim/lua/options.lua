@@ -22,6 +22,10 @@ opt.cursorline = true
 opt.scrolloff = 8
 opt.wrap = false
 
+-- 不可視文字の可視化
+opt.list = true
+opt.listchars = { lead = "·", space = "·", tab = "▸ ", trail = "·", nbsp = "␣", extends = "»", precedes = "«" }
+
 -- ファイル
 opt.swapfile = false
 opt.backup = false

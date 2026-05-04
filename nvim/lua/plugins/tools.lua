@@ -38,6 +38,9 @@ return {
         enable = true, -- 外部からのファイル変更を検知して自動更新
         debounce_delay = 50,
       },
+      filters = {
+        git_ignored = false, -- .gitignoreに含まれるファイルも表示
+      },
     },
   },
   -- Git

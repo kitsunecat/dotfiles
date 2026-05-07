@@ -6,7 +6,15 @@ config.debug_key_events = true
 
 -- # キーボードショートカット
 config.keys = {
-  { key = '[',          mods = 'CTRL',       action = act.ActivateCopyMode },
+  {
+    key = '[',
+    mods = 'CTRL',
+    action = act.Multiple({
+      act.ActivateCopyMode,
+      act.CopyMode('ClearSelectionMode'),
+      act.CopyMode('ClearPattern'),
+    }),
+  },
   -- ペイン分割
   { key = '|',          mods = 'CTRL|SHIFT', action = act.SplitHorizontal({ domain = 'CurrentPaneDomain' }) },
   { key = '_',          mods = 'CTRL|SHIFT', action = act.SplitVertical({ domain = 'CurrentPaneDomain' }) },

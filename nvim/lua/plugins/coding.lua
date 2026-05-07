@@ -59,9 +59,4 @@ return {
     opts = {},
   },
 
-  -- コメントアウト（gcc / gc）
-  {
-    "numToStr/Comment.nvim",
-    opts = {},
-  },
 }

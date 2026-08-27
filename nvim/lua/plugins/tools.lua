@@ -13,7 +13,17 @@ return {
       { "<leader>fs", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Symbols" },
       { "<leader>fd", "<cmd>Telescope diagnostics<cr>",          desc = "Diagnostics" },
     },
-    opts = {},
+    opts = {
+      pickers = {
+        find_files = {
+          hidden = true, -- ドット始まりのファイルも表示
+          find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+        },
+        live_grep = {
+          additional_args = { "--hidden", "--glob", "!.git/*" },
+        },
+      },
+    },
   },
 
   -- ファイルツリー

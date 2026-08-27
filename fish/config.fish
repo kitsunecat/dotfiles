@@ -21,7 +21,7 @@ alias vim='nvim'
 alias td-run='docker compose run --rm app '
 
 # ENV
-set -x PATH $HOME/.rbenv/bin $HOME/.cargo/bin $HOME/.nodebrew/current/bin $PATH
+set -x PATH $HOME/.local/bin $HOME/.rbenv/bin $HOME/.cargo/bin $HOME/.nodebrew/current/bin $PATH
 
 # mysql-client
 set -x PATH /usr/local/opt/mysql-client/bin $PATH

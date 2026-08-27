@@ -1,21 +1,9 @@
 # シンボリックリンク
 
-## vim 設定
-
-```sh
-ln -s ~/dotfiles/_vimrc ~/.vimrc
-```
-
 ## zsh 設定
 
 ```sh
 ln -s ~/dotfiles/_zshrc ~/.zshrc
-```
-
-## tmux 設定
-
-```sh
-ln -s ~/dotfiles/\_tmux_mac.conf ~/.tmux.conf
 ```
 
 ## fish 設定
@@ -25,20 +13,10 @@ mv ~/.config/fish ~/.config/fish_bk
 ln -s ~/dotfiles/fish ~/.config/fish
 ```
 
-## xbindkey
-
-```sh
-ln -s ~/dotfiles/_xbindkeysrc ~/.xbindkeysrc
-
-```
-
 ## for Linux
 
 ```sh
-ln -s ~/dotfiles/_vimrc ~/.vimrc
 ln -s ~/dotfiles/_zshrc ~/.zshrc
-ln -s ~/dotfiles/_tmux.conf ~/.tmux.conf
-ln -s ~/dotfiles/_xbindkeysrc ~/.xbindkeysrc
 mv ~/.config/fish ~/.config/fish_bk
 ln -s ~/dotfiles/fish ~/.config/fish
 ln -s ~/dotfiles/_wezterm.lua ~/.wezterm.lua

@@ -6,7 +6,17 @@ config.debug_key_events = true
 
 -- # キーボードショートカット
 config.keys = {
-  { key = '[',          mods = 'CTRL',       action = act.ActivateCopyMode },
+  {
+    key = '[',
+    mods = 'CTRL',
+    action = act.Multiple({
+      act.ActivateCopyMode,
+      act.CopyMode('ClearSelectionMode'),
+      act.CopyMode('ClearPattern'),
+    }),
+  },
+  -- ペイン選択画面を開く -- アクティブなペインと入れ替え
+  { key = 'e',          mods = 'CTRL|SHIFT', action = wezterm.action.PaneSelect { mode = 'SwapWithActiveKeepFocus' } },
   -- ペイン分割
   { key = '|',          mods = 'CTRL|SHIFT', action = act.SplitHorizontal({ domain = 'CurrentPaneDomain' }) },
   { key = '_',          mods = 'CTRL|SHIFT', action = act.SplitVertical({ domain = 'CurrentPaneDomain' }) },
@@ -36,6 +46,7 @@ config.line_height = 1.0
 config.cell_width = 1.0
 
 -- # ウィンドウ設定
+--
 
 -- 起動時のウィンドウサイズ（文字数で指定：列数 × 行数）
 config.initial_cols = 120
@@ -43,5 +54,8 @@ config.initial_rows = 36
 
 -- 背景透過
 config.window_background_opacity = 0.85 -- 0.0(完全透明) ～ 1.0(不透明)
+
+-- タブが1つのときはタブバーを非表示
+config.hide_tab_bar_if_only_one_tab = true
 
 return config

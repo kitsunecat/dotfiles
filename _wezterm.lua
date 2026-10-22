@@ -34,6 +34,20 @@ config.keys = {
   { key = 'RightArrow', mods = 'CTRL|SHIFT', action = act.AdjustPaneSize({ 'Right', 5 }) },
   { key = 'UpArrow',    mods = 'CTRL|SHIFT', action = act.AdjustPaneSize({ 'Up', 5 }) },
   { key = 'DownArrow',  mods = 'CTRL|SHIFT', action = act.AdjustPaneSize({ 'Down', 5 }) },
+  -- タブ名を変更（デフォルトの CTRL+SHIFT+N = 新規ウィンドウを上書き）
+  {
+    key = 'n',
+    mods = 'CTRL|SHIFT',
+    action = act.PromptInputLine({
+      description = 'タブ名を入力',
+      action = wezterm.action_callback(function(window, _, line)
+        -- Esc でキャンセルすると line は nil、空文字なら名前をリセット
+        if line then
+          window:active_tab():set_title(line)
+        end
+      end),
+    }),
+  },
 }
 
 -- # フォント設定
